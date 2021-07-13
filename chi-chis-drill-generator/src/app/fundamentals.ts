@@ -283,5 +283,22 @@ export const fundamentals = [
     step: 16,
     facing: 0,
   },
-  /* TODO: slow turns */
+  {
+    id: 30,
+    name: 'hats off, Ohio on the end',
+    forward: 0,
+    side: 0,
+    counts: 25,
+    step: 8,
+    facing: 0,
+  },
+  {
+    id: 31,
+    name: 'hats off, 1-2-3',
+    forward: 0,
+    side: 0,
+    counts: 26,
+    step: 8,
+    facing: 0,
+  },
 ];
