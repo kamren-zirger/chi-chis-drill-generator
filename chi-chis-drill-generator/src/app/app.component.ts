@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Fundamental, fundamentals } from './fundamentals';
+import { Pattern, patterns } from './patterns';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'chi-chis-drill-generator';
+
+  get pattern() {
+    return patterns[0];
+  }
 }
