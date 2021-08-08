@@ -41,6 +41,7 @@ export class AppComponent {
   genDrill() {
     // Clear old drill
     this.curDrill = [];
+    this.curDrillStr = [];
 
     // Get random drill until minimum counts satisfied
     while (countSum(this.curDrill) < this.minCountNum) {
@@ -53,14 +54,16 @@ export class AppComponent {
     // Build drill strings
     let curFundCount = 1,
       prevFundId = -1;
-    this.curDrill.forEach((fund) => {
-      if (fund.id === prevFundId) {
-        curFundCount++;
-      } else {
-        this.curDrillStr.push(
-          curFundCount.toString + fundamentals[prevFundId].name
-        );
-      }
+    this.curDrill.forEach((patt) => {
+      patt.fundamentals.forEach((fund) => {
+        if (fund.id === prevFundId) {
+          curFundCount++;
+        } else {
+          this.curDrillStr.push(curFundCount.toString() + ' ' + fund.name);
+          prevFundId = fund.id;
+          curFundCount = 1;
+        }
+      });
     });
   }
 }
