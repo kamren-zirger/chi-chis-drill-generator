@@ -7,6 +7,8 @@ import { Fundamental, fundamentals } from './fundamentals';
 export interface Pattern {
   id: number;
   fundamentals: Array<Fundamental>;
+  name?: string;
+  sublist?: Array<string>;
 }
 
 export const patterns = [
