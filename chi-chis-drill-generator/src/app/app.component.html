@@ -149,7 +149,22 @@
     <div>
       <ul>
         <li *ngFor="let item of curDrillStr; let i = index">
-          {{ curDrillStr[i] }}
+          <div
+            *ngIf="
+              curDrillStr[i].constructor.name === 'Array';
+              else elseIsString
+            "
+          >
+            <ul>
+              <li *ngFor="let str of curDrillStr[i]; let j = index">
+                {{ curDrillStr[i][j] }}
+              </li>
+            </ul>
+          </div>
+
+          <ng-template #elseIsString>
+            {{ curDrillStr[i] }}
+          </ng-template>
         </li>
       </ul>
     </div>

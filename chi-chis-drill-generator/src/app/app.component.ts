@@ -57,7 +57,21 @@ export class AppComponent {
     this.curDrill.forEach((patt) => {
       if (patt.name) {
         this.curDrillStr.push(patt.name);
-        this.curDrillStr.push(patt.sublist);
+        let tempArray = new Array<string>();
+        curFundCount = 1;
+        prevFundId = -1;
+        patt.fundamentals.forEach((fund) => {
+          if (fund.id === prevFundId) {
+            curFundCount++;
+            tempArray.pop();
+            tempArray.push(curFundCount.toString() + ' ' + fund.name);
+          } else {
+            curFundCount = 1;
+            tempArray.push(curFundCount.toString() + ' ' + fund.name);
+            prevFundId = fund.id;
+          }
+        });
+        this.curDrillStr.push(tempArray);
         prevFundId = -1;
         curFundCount = 1;
       } else {

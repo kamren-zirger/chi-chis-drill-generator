@@ -17,7 +17,20 @@ export const patterns = [
     fundamentals: [fundamentals[0], fundamentals[1], fundamentals[2]],
   },
   {
-    id: 0,
+    id: 1,
     fundamentals: [fundamentals[1], fundamentals[0]],
+  },
+  {
+    id: 2,
+    fundamentals: [
+      fundamentals[0],
+      fundamentals[7],
+      fundamentals[0],
+      fundamentals[7],
+      fundamentals[0],
+      fundamentals[7],
+      fundamentals[0],
+    ],
+    name: 'Box of rights',
   },
 ];
