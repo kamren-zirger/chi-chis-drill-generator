@@ -25,7 +25,8 @@ export class AppComponent {
   title = 'chi-chis-drill-generator';
 
   minCountNum = 32;
-  currentDrill = new Array<Fundamental>();
+  curDrill = new Array<Fundamental>();
+  curDrillStr = new Array<string>();
 
   get pattern() {
     return patterns[randInt(patterns.length)];
@@ -37,16 +38,25 @@ export class AppComponent {
 
   genDrill() {
     // Clear old drill
-    this.currentDrill = [];
+    this.curDrill = [];
 
     // Get random drill until minimum counts satisfied
-    while (countSum(this.currentDrill) < this.minCountNum) {
+    while (countSum(this.curDrill) < this.minCountNum) {
       // Get pattern to add
       let curPattern = patterns[randInt(patterns.length)];
       // Add each fundamental to drill
       curPattern.fundamentals.forEach((fund) => {
-        this.currentDrill.push(fund);
+        this.curDrill.push(fund);
       });
     }
+
+    // Build drill string
+    let curFundCount = 1,
+      prevFundId = -1;
+    this.curDrill.forEach((fund) => {
+      if (fund.id === prevFundId) {
+        curFundCount++;
+      }
+    });
   }
 }
