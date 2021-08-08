@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Fundamental, fundamentals } from './fundamentals';
 import { Pattern, patterns } from './patterns';
 
+import { MatSliderModule } from '@angular/material/slider';
+
 function randInt(len: number) {
   return Math.floor(Math.random() * len);
 }
