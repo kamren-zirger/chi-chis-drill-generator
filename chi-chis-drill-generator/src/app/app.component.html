@@ -132,7 +132,17 @@
     </h1>
   </a>
   <div class="content" role="main">
-    <mat-slider></mat-slider>
+    <mat-slider
+      aria-label="Minimum Count Number"
+      min="8"
+      max="128"
+      step="8"
+      value="32"
+      tickInterval="2"
+      thumbLabel
+      color="primary"
+      (change)="setCountNum($event)"
+    ></mat-slider>
     <button mat-raised-button color="primary" (click)="genDrill()">
       Generate Drill
     </button>
