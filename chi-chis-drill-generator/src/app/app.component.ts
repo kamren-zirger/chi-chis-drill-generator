@@ -8,10 +8,12 @@ function randInt(len: number) {
   return Math.floor(Math.random() * len);
 }
 
-function countSum(a: Array<Fundamental>) {
+function countSum(a: Array<Pattern>) {
   let sum = 0;
-  a.forEach((fund) => {
-    sum += fund.counts;
+  a.forEach((patt) => {
+    patt.fundamentals.forEach((fund) => {
+      sum += fund.counts;
+    });
   });
   return sum;
 }
@@ -25,7 +27,7 @@ export class AppComponent {
   title = 'chi-chis-drill-generator';
 
   minCountNum = 32;
-  curDrill = new Array<Fundamental>();
+  curDrill = new Array<Pattern>();
   curDrillStr = new Array<string>();
 
   get pattern() {
@@ -45,17 +47,19 @@ export class AppComponent {
       // Get pattern to add
       let curPattern = patterns[randInt(patterns.length)];
       // Add each fundamental to drill
-      curPattern.fundamentals.forEach((fund) => {
-        this.curDrill.push(fund);
-      });
+      this.curDrill.push(curPattern);
     }
 
-    // Build drill string
+    // Build drill strings
     let curFundCount = 1,
       prevFundId = -1;
     this.curDrill.forEach((fund) => {
       if (fund.id === prevFundId) {
         curFundCount++;
+      } else {
+        this.curDrillStr.push(
+          curFundCount.toString + fundamentals[prevFundId].name
+        );
       }
     });
   }
