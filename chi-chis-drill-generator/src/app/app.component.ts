@@ -28,7 +28,7 @@ export class AppComponent {
 
   minCountNum = 32;
   curDrill = new Array<Pattern>();
-  curDrillStr = new Array<string>();
+  curDrillStr = new Array<any>();
 
   get pattern() {
     return patterns[randInt(patterns.length)];
@@ -55,15 +55,24 @@ export class AppComponent {
     let curFundCount = 1,
       prevFundId = -1;
     this.curDrill.forEach((patt) => {
-      patt.fundamentals.forEach((fund) => {
-        if (fund.id === prevFundId) {
-          curFundCount++;
-        } else {
-          this.curDrillStr.push(curFundCount.toString() + ' ' + fund.name);
-          prevFundId = fund.id;
-          curFundCount = 1;
-        }
-      });
+      if (patt.name) {
+        this.curDrillStr.push(patt.name);
+        this.curDrillStr.push(patt.sublist);
+        prevFundId = -1;
+        curFundCount = 1;
+      } else {
+        patt.fundamentals.forEach((fund) => {
+          if (fund.id === prevFundId) {
+            curFundCount++;
+            this.curDrillStr.pop();
+            this.curDrillStr.push(curFundCount.toString() + ' ' + fund.name);
+          } else {
+            curFundCount = 1;
+            this.curDrillStr.push(curFundCount.toString() + ' ' + fund.name);
+            prevFundId = fund.id;
+          }
+        });
+      }
     });
   }
 }
