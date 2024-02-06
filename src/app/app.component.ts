@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MenubarModule } from 'primeng/menubar';
 
 import { DrillGeneratorComponent } from './core/features/drill-generator/drill-generator.component';
+import { MenubarComponent } from './core/components/menubar/menubar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, DrillGeneratorComponent, MenubarModule],
+  imports: [RouterOutlet, DrillGeneratorComponent, MenubarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

@@ -1,0 +1,14 @@
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 500;
+  padding: 0px;
+
+  .p-card {
+    .p-card-body {
+      padding: 0 1rem;
+    }
+  }
+}
