@@ -1,92 +1,16 @@
 import { Component } from '@angular/core';
-import { Fundamental, fundamentals } from './fundamentals';
-import { Pattern, patterns } from './patterns';
+import { RouterOutlet } from '@angular/router';
+import { MenubarModule } from 'primeng/menubar';
 
-import { MatSliderModule } from '@angular/material/slider';
-
-function randInt(len: number) {
-  return Math.floor(Math.random() * len);
-}
-
-function countSum(a: Array<Pattern>) {
-  let sum = 0;
-  a.forEach((patt) => {
-    patt.fundamentals.forEach((fund) => {
-      sum += fund.counts;
-    });
-  });
-  return sum;
-}
+import { DrillGeneratorComponent } from './core/features/drill-generator/drill-generator.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, DrillGeneratorComponent, MenubarModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass'],
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'chi-chis-drill-generator';
-
-  minCountNum = 32;
-  curDrill = new Array<Pattern>();
-  curDrillStr = new Array<any>();
-
-  get pattern() {
-    return patterns[randInt(patterns.length)];
-  }
-
-  setCountNum(event: any) {
-    this.minCountNum = event.value;
-  }
-
-  genDrill() {
-    // Clear old drill
-    this.curDrill = [];
-    this.curDrillStr = [];
-
-    // Get random drill until minimum counts satisfied
-    while (countSum(this.curDrill) < this.minCountNum) {
-      // Get pattern to add
-      let curPattern = patterns[randInt(patterns.length)];
-      // Add each fundamental to drill
-      this.curDrill.push(curPattern);
-    }
-
-    // Build drill strings
-    let curFundCount = 1,
-      prevFundId = -1;
-    this.curDrill.forEach((patt) => {
-      if (patt.name) {
-        this.curDrillStr.push(patt.name);
-        let tempArray = new Array<string>();
-        curFundCount = 1;
-        prevFundId = -1;
-        patt.fundamentals.forEach((fund) => {
-          if (fund.id === prevFundId) {
-            curFundCount++;
-            tempArray.pop();
-            tempArray.push(curFundCount.toString() + ' ' + fund.name);
-          } else {
-            curFundCount = 1;
-            tempArray.push(curFundCount.toString() + ' ' + fund.name);
-            prevFundId = fund.id;
-          }
-        });
-        this.curDrillStr.push(tempArray);
-        prevFundId = -1;
-        curFundCount = 1;
-      } else {
-        patt.fundamentals.forEach((fund) => {
-          if (fund.id === prevFundId) {
-            curFundCount++;
-            this.curDrillStr.pop();
-            this.curDrillStr.push(curFundCount.toString() + ' ' + fund.name);
-          } else {
-            curFundCount = 1;
-            this.curDrillStr.push(curFundCount.toString() + ' ' + fund.name);
-            prevFundId = fund.id;
-          }
-        });
-      }
-    });
-  }
 }

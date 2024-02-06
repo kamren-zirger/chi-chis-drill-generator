@@ -1,17 +1,7 @@
-/* Chi Chi's Drill Generator */
+import { Pattern } from '../../app/core/models/patterns';
+import { fundamentals } from './fundamentals';
 
-/* Author: K. Zirger */
-
-import { Fundamental, fundamentals } from './fundamentals';
-
-export interface Pattern {
-  id: number;
-  fundamentals: Array<Fundamental>;
-  name?: string;
-  sublist?: Array<string>;
-}
-
-export const patterns = [
+export const patterns: Array<Pattern> = [
   {
     id: 0,
     fundamentals: [fundamentals[0], fundamentals[1]],
