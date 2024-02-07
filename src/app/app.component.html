@@ -1,5 +1,6 @@
 <main class="main">
-  <app-menubar></app-menubar>
+  <app-menubar (sidebarButtonClick)="sidebarVisible = true"></app-menubar>
+  <app-sidebar [visible]="sidebarVisible"></app-sidebar>
   <div class="center">
     <app-drill-generator></app-drill-generator>
     Hello, this is a drill generator
