@@ -9,6 +9,11 @@
   .p-card {
     .p-card-body {
       padding: 0 1rem;
+      .p-card-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
     }
   }
 }
